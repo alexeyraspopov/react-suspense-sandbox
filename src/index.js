@@ -1,6 +1,6 @@
-import React from '../lib/react';
-import ReactDOM from '../lib/react-dom';
-import { createCache, createResource } from '../lib/simple-cache-provider';
+import React from 'react';
+import ReactDOM from 'react-dom';
+import { createCache, createResource } from 'simple-cache-provider';
 
 function loadUpperCase(text) {
   return new Promise(resolve => setTimeout(resolve, 4000, text.toUpperCase()));

@@ -1,14 +1,20 @@
 {
   "name": "loading-demo",
   "dependencies": {
-    "parcel-bundler": "^1.8.1"
+    "react-router-dom": "^4.2.2"
   },
   "devDependencies": {
     "babel-preset-env": "^1.7.0",
-    "babel-preset-react": "^6.24.1"
+    "babel-preset-react": "^6.24.1",
+    "parcel-bundler": "^1.8.1"
   },
   "scripts": {
     "start": "parcel serve src/index.html",
     "build": "parcel build src/index.html"
+  },
+  "alias": {
+    "react": "./lib/react",
+    "react-dom": "./lib/react-dom",
+    "simple-cache-provider": "./lib/simple-cache-provider"
   }
 }
