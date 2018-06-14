@@ -9,6 +9,9 @@ function loadUpperCase(text) {
 let cache = createCache();
 let resource = createResource(loadUpperCase);
 
+let rootElement = document.querySelector('main');
+let asideElement = document.querySelector('aside');
+
 function AsyncText({ text }) {
   let uppercased = resource.read(cache, text);
   return <p>{uppercased}</p>;
@@ -16,7 +19,7 @@ function AsyncText({ text }) {
 
 let loadingBar = ReactDOM.createPortal(
   <div className="loading-bar" />,
-  document.querySelector('aside')
+  asideElement
 );
 
 function GlobalFallback({ placeholder, children }) {
@@ -59,9 +62,10 @@ function App() {
 }
 
 let AsyncMode = React.unstable_AsyncMode;
+
 ReactDOM.render(
   <AsyncMode>
     <App />
   </AsyncMode>,
-  document.querySelector('main')
+  rootElement
 );
