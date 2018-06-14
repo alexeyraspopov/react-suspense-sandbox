@@ -43,10 +43,10 @@ function LoadingText() {
   );
 }
 
-function Content() {
+function Content({ id }) {
   return (
     <GlobalFallback placeholder={<LoadingText />}>
-      <AsyncText text="Lorem ipsum dolor sit amet" />
+      <AsyncText text={`${id}: Lorem ipsum dolor sit amet`} />
     </GlobalFallback>
   );
 }
@@ -58,7 +58,8 @@ function App() {
         This page is going to render some text. Let's assume that it takes some
         time.
       </p>
-      <Content />
+      <Content id="a" />
+      <Content id="b" />
       <p>Also, here is some other synchronous content on the page.</p>
     </section>
   );
