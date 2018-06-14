@@ -5,7 +5,8 @@ import { createCache, createResource } from 'simple-cache-provider';
 import Fallback from './Fallback';
 
 function loadUpperCase(text) {
-  return new Promise(resolve => setTimeout(resolve, 4000, text.toUpperCase()));
+  let delay = Math.random() * 3000 + 10;
+  return new Promise(resolve => setTimeout(resolve, delay, text.toUpperCase()));
 }
 
 let cache = createCache();
