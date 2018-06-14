@@ -2,6 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { createCache, createResource } from 'simple-cache-provider';
 
+import Fallback from './Fallback';
+
 function loadUpperCase(text) {
   return new Promise(resolve => setTimeout(resolve, 4000, text.toUpperCase()));
 }
@@ -29,11 +31,7 @@ function GlobalFallback({ placeholder, children }) {
       {loadingBar}
     </React.Fragment>
   );
-  return (
-    <React.Timeout ms={1000}>
-      {didExpire => (didExpire ? content : children)}
-    </React.Timeout>
-  );
+  return <Fallback ms={400} placeholder={content} children={children} />;
 }
 
 function LoadingText() {
