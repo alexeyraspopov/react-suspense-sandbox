@@ -1,0 +1,17 @@
+{
+  "name": "action-component",
+  "devDependencies": {
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-react": "^6.24.1",
+    "parcel-bundler": "^1.8.1"
+  },
+  "scripts": {
+    "start": "parcel serve ActionComponent.html",
+    "build": "parcel build ActionComponent.html"
+  },
+  "alias": {
+    "react": "../react",
+    "react-dom": "../react-dom",
+    "simple-cache-provider": "../simple-cache-provider"
+  }
+}
