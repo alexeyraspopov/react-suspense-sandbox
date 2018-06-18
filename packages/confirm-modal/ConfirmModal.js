@@ -33,8 +33,10 @@ function AsyncActionWithConfirmation() {
     return request(k + v);
   });
 
+  let confirm = <Confirm onConfirm={(v) => s.resolve(v)} />;
+
   return (
-    <Fallback ms={0} placeholder={<Confirm onConfirm={(v) => s.resolve(v)} />}>
+    <Fallback ms={0} placeholder={confirm}>
       <Content fetcher={fetcher} />
     </Fallback>
   );
