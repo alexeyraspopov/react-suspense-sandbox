@@ -1,9 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { createCache, createResource } from 'simple-cache-provider';
 
 import Fallback from './Fallback';
 import Deferred from './Deferred';
+import createFetcher from './createFetcher';
 
 let rootElement = document.querySelector('main');
 
@@ -28,18 +28,20 @@ function request(k) {
 function AsyncActionWithConfirmation() {
   let s = new Deferred();
 
-  let resource = createResource((k) => s.promise.then(v => request(k + v)));
-  let cache = createCache();
+  let fetcher = createFetcher(async (k) => {
+    let v = await s.promise;
+    return request(k + v);
+  });
 
   return (
     <Fallback ms={0} placeholder={<Confirm onConfirm={(v) => s.resolve(v)} />}>
-      <Content resource={resource} cache={cache} />
+      <Content fetcher={fetcher} />
     </Fallback>
   );
 }
 
-function Content({ resource, cache }) {
-  let response = resource.read(cache, 't');
+function Content({ fetcher }) {
+  let response = fetcher.read('t');
   return <p>{response}</p>;
 }
 
