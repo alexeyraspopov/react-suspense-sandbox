@@ -1,28 +1,26 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { createCache, createResource } from 'simple-cache-provider';
 
 import Fallback from './Fallback';
+import createFetcher from './createFetcher';
 
 function uploadContent(text) {
   return new Promise(resolve => setTimeout(resolve, 3000, text.toUpperCase()));
 }
 
-let uploadContentResource = createResource(uploadContent);
-
 let rootElement = document.querySelector('main');
 
 function UploadContentHandler({ value }) {
-  let cache = createCache();
+  let fetcher = createFetcher(uploadContent);
   return (
     <Fallback ms={0} placeholder={"Uploading..."}>
-      <UploadContent cache={cache} value={value} />
+      <UploadContent fetcher={fetcher} value={value} />
     </Fallback>
   );
 }
 
-function UploadContent({ cache, value }) {
-  let response = uploadContentResource.read(cache, value);
+function UploadContent({ fetcher, value }) {
+  let response = fetcher.read(value);
   return (
     <p>Uploaded: {response}</p>
   );
